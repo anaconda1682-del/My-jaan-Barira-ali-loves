@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meri Jaan Barira ❤️</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<style>
+body{
+  margin:0; padding:0; height:100vh; width:100vw;
+  overflow:hidden; font-family:'Poppins',sans-serif; color:white;
+  text-align:center; display:flex; justify-content:center; align-items:center;
+  background:#000;
+}
+.container{width:90%; max-width:400px; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;}
+.hidden{display:none;}
+.shine{font-family:'Great Vibes', cursive; font-size:2em; background: linear-gradient(90deg,#ff0057,#fffd87,#00d4ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation:shine 2s linear infinite; margin-bottom:8px;}
+p{font-size:1em; margin:10px;}
+button{margin-top:10px; padding:10px 20px; font-size:1em; font-weight:600; border:none; border-radius:20px; background:white; color:#ff0057; cursor:pointer;}
+button:hover{transform:scale(1.05);}
+.photo{width:130px; height:130px; border-radius:50%; object-fit:cover; margin:10px; border:2px solid white; box-shadow:0 0 10px #ff0057;}
+.heart{position:absolute; bottom:-20px; font-size:16px; animation:float 5s linear infinite;}
+@keyframes float{0%{transform:translateY(0);opacity:1;}100%{transform:translateY(-100vh);opacity:0;}}
+@keyframes shine{0%{background-position:0% 50%;}100%{background-position:100% 50%;}}
+#yesHeart{position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); font-size:80px; display:none; animation:scaleHeart 1.5s forwards;}
+@keyframes scaleHeart{0%{transform:translate(-50%,-50%) scale(0);} 100%{transform:translate(-50%,-50%) scale(1);}}
+#noHeart{position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); font-size:80px; display:none; color:#ff0057; animation:breakHeart 1.5s forwards;}
+@keyframes breakHeart{0%{transform:translate(-50%,-50%) scale(1);} 100%{transform:translate(-50%,-50%) scale(0.5) rotate(-20deg); opacity:0;}}
+.float-btn{display:inline-block; margin:8px; padding:10px 20px; border-radius:20px; background:#ff0057; color:white; font-weight:bold; cursor:pointer;}
+</style>
+</head>
+<body>
+
+<!-- Welcome Page -->
+<div class="container" id="welcome">
+  <div class="shine">Welcome Meri Jaan ❤️</div>
+  <img src="barira_welcome.jpg" class="photo">
+  <p> Hope you Fine 🥰</p>
+  <button onclick="startJourney()">Start → ❤️</button>
+</div>
+
+<!-- Page 1 -->
+<div class="container hidden" id="page1">
+  <div class="shine">Barira ❤️</div>
+  <p> Barira, jab se tum meri zindagi mein aayi ho, sab kuch roshan aur khubsurat lagta hai. Kya tum meri zindagi ka hissa banogi? ✨💖 🌸💖</p>
+  <img src="pic1.jpg" class="photo">
+  <button onclick="nextPage('page1','page2','music2_new.mp3')">I Love You → ❤️</button>
+</div>
+
+<!-- Page 2 -->
+<div class="container hidden" id="page2">
+  <div class="shine">Barira ❤️</div>
+  <p>Meri har khushi tumse judi hai, aur har pal tumhare bina adhoora lagta hai. Kya tum mere saath apni zindagi ka safar shuru karogi? 🌹💌</p>✨</p>
+  <img src="pic2.jpg" class="photo">
+  <button onclick="nextPage('page2','page3','music3.mp3')">I Love You → ❤️</button>
+</div>
+
+<!-- Page 3 -->
+<div class="container hidden" id="page3">
+  <div class="shine">Barira ❤️</div>
+  <p>Barira, tum meri duaon ka sabse khoobsurat jawab ho. Kya mujhe apna banane ka ek mauka dogi? 💕🌷</p>
+  <img src="pic3.jpg" class="photo">
+  <button onclick="nextPage('page3','page4','music4.mp3')">I Love You → ❤️</button>
+</div>
+
+<!-- Page 4 -->
+<div class="container hidden" id="page4">
+  <div class="shine">Barira ❤️</div>
+  <p>Mera dil sirf tumhare liye dhadakta hai, aur meri duniya sirf tumse poori hoti hai. Kya tum meri zindagi banogi?💖✨💫</p>
+  <img src="pic4.jpg" class="photo">
+  <button onclick="nextPage('page4','page5','music5.mp3')">I Love You → ❤️</button>
+</div>
+
+<!-- Page 5 Interactive -->
+<div class="container hidden" id="page5">
+  <div class="shine">Ali Haider ❤️ Barira ❤️</div>
+  <p>Tum meri muskan ki wajah ho aur meri har khushi ka raaz. Kya tum hamesha ke liye meri ho jaogi?🌸💞 😍💖</p>
+  <img src="pic5a.jpg" class="photo" id="aliPic">
+  <img src="pic5b.jpg" class="photo" id="bariraPic">
+  <p>Kia ap mujhe accept karogi? 🥹❤️</p>
+  <span class="float-btn" onclick="happyPage()">YES 💕</span>
+  <span class="float-btn" onclick="sadPage()">NO 💔</span>
+</div>
+
+<!-- YES/NO Animation -->
+<div id="yesHeart">❤️</div>
+<div id="noHeart">💔</div>
+
+<!-- Background Music -->
+<audio id="bgMusic" loop></audio>
+
+<script>
+// Floating hearts
+setInterval(()=>{
+  let heart=document.createElement("div");
+  heart.className="heart";
+  heart.innerHTML="❤️";
+  heart.style.left=Math.random()*100+"vw";
+  heart.style.fontSize=(Math.random()*20+12)+"px";
+  document.body.appendChild(heart);
+  setTimeout(()=>heart.remove(),5000);
+},300);
+
+// Start journey + Welcome Music
+function startJourney(){
+  let audio=document.getElementById('bgMusic');
+  audio.src='welcome_music.mp3'; // Welcome music
+  audio.play();
+  document.getElementById('welcome').classList.add('hidden');
+  nextPage(null,'page1','music1.mp3');
+}
+
+// Next page + music
+function nextPage(current,next,music){
+  if(current) document.getElementById(current).classList.add('hidden');
+  document.getElementById(next).classList.remove('hidden');
+  let audio=document.getElementById('bgMusic');
+  audio.src=music;
+  audio.play();
+}
+
+// YES animation
+function happyPage(){
+  document.getElementById('page5').classList.add('hidden');
+  let yes=document.getElementById('yesHeart');
+  yes.style.display='block';
+  let audio=document.getElementById('bgMusic');
+  audio.src='happy.mp3';
+  audio.play();
+
+  // Heart + images merge animation
+  let ali=document.getElementById('aliPic');
+  let barira=document.getElementById('bariraPic');
+  ali.style.position='fixed'; ali.style.top='40%'; ali.style.left='35%'; ali.style.transition='all 1.5s ease';
+  barira.style.position='fixed'; barira.style.top='40%'; barira.style.left='55%'; barira.style.transition='all 1.5s ease';
+
+  setTimeout(()=>{ yes.style.display='none'; },1500);
+}
+
+// NO animation
+function sadPage(){
+  document.getElementById('page5').classList.add('hidden');
+  let no=document.getElementById('noHeart');
+  no.style.display='block';
+  let audio=document.getElementById('bgMusic');
+  audio.src='sad.mp3';
+  audio.play();
+
+  // Heart breaking + images split
+  let ali=document.getElementById('aliPic');
+  let barira=document.getElementById('bariraPic');
+  ali.style.position='fixed'; ali.style.top='30%'; ali.style.left='20%'; ali.style.transition='all 1.5s ease';
+  barira.style.position='fixed'; barira.style.top='50%'; barira.style.left='70%'; barira.style.transition='all 1.5s ease';
+
+  setTimeout(()=>{ no.style.display='none'; },1500);
+}
+</script>
+</body>
+</html>
