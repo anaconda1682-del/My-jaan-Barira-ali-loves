@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>I Love You Barira</title>
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+body{
+  margin:0;
+  height:100vh;
+  background:
+    linear-gradient(to bottom, rgba(0,20,60,0.4), rgba(0,0,40,0.95)),
+    url("letter-bg.jpg") center/cover no-repeat fixed;
+  font-family:'Playfair Display', serif;
+  font-weight:600;
+  color:#d6e9ff;
+  text-align:center;
+  overflow:hidden;
+}
+
+/* TOP TEXT (SMALLER) */
+.top-love{
+  margin-top:18px;
+  font-family:'Great Vibes', cursive;
+  font-size:34px;
+  color:#6fb7ff;
+  animation:floatText 3s ease-in-out infinite;
+  position:relative;
+  z-index:5;
+}
+.top-love span{
+  color:#ff4d6d;
+}
+
+@keyframes floatText{
+  0%{transform:translateY(0);}
+  50%{transform:translateY(-6px);}
+  100%{transform:translateY(0);}
+}
+
+/* IMAGE HEART (SMALLER + CLICK FIXED) */
+.image-heart{
+  width:220px;
+  height:220px;
+  margin:20px auto 8px;
+  cursor:pointer;
+  animation:imgPulse 1.6s infinite;
+  filter: drop-shadow(0 0 12px rgba(255,77,109,0.8));
+  position:relative;
+  z-index:10;
+  pointer-events:auto;
+}
+
+@keyframes imgPulse{
+  0%{transform:scale(1);}
+  50%{transform:scale(1.08);}
+  100%{transform:scale(1);}
+}
+
+/* FLOATING HEARTS */
+.heart-bg{
+  position:absolute;
+  bottom:-40px;
+  animation:floatUp linear infinite;
+  opacity:0.6;
+  z-index:1;
+  pointer-events:none;
+}
+@keyframes floatUp{
+  from{transform:translateY(0);opacity:0;}
+  to{transform:translateY(-120vh);opacity:1;}
+}
+
+/* LETTER BOX (COMPACT) */
+.letter{
+  width:88%;
+  max-width:420px;
+  margin:25px auto;
+  padding:20px;
+  background:rgba(0,20,60,0.7);
+  border-radius:22px;
+  box-shadow:0 0 25px rgba(90,150,255,0.6);
+  display:none;
+  position:relative;
+  z-index:20;
+  animation:openLetter 1s ease forwards;
+}
+@keyframes openLetter{
+  from{opacity:0;transform:scale(0.75);}
+  to{opacity:1;transform:scale(1);}
+}
+
+/* HEADING (SMALLER) */
+.letter h2{
+  font-family:'Lobster', cursive;
+  color:#ff4d6d;
+  font-size:26px;
+  margin-bottom:12px;
+}
+
+/* PARAGRAPH */
+.letter p{
+  font-size:16px;
+  line-height:1.6;
+}
+
+/* BUTTON (COMPACT) */
+.contact button{
+  background:transparent;
+  border:2px solid #ff4d6d;
+  color:#eaf4ff;
+  padding:12px 24px;
+  font-size:16px;
+  border-radius:35px;
+  cursor:pointer;
+}
+.contact span{color:#ff4d6d;}
+</style>
+</head>
+
+<body>
+
+<!-- TOP TEXT -->
+<div class="top-love">Ali <span>❤️</span> Barira</div>
+
+<audio id="bgMusic" loop>
+  <source src="love-music.mp3" type="audio/mpeg">
+</audio>
+
+<!-- IMAGE HEART -->
+<img src="heart.png" class="image-heart" onclick="openLetter()" alt="Heart">
+
+<div style="font-size:14px;">Click the Heart</div>
+
+<!-- LETTER -->
+<div class="letter" id="letterBox">
+  <h2>I Love You Barira</h2>
+
+  <p>
+    Shayad yeh lafz mere dil ka poora haal bayaan na kar saken,
+lekin phir bhi main chahta hoon ke tum jaan sako
+ke tum mere liye kitni khaas ho۔
+tumhara khayal mere dil mein
+aise rehta hai
+jaise sukoon rehta hai khamoshi mein۔
+Main tumhein paane ki zid nahi karta،
+kyun ke mohabbat ka matlab
+qabza nahi hota،
+izzat hoti hai۔
+Kabhi kabhi bina baat ke bhi
+tumhari bohat yaad aati hai،
+shayad is liye
+kyun ke tum mere liye
+sirf pasand nahi،
+ek ehsaas ho۔
+Agar kabhi tumhara dil ijazat de
+toh mujhe apni zindagi ka
+ek sachcha hissa samajh lena،
+main wada karta hoon
+tumhari khushi ko
+apni dua bana ke rakhunga
+    <br><br>
+    Yeh lafz kam hain lekin dil sachcha h barira 
+  </p>
+
+  <div class="contact">
+    <button onclick="contactMe()">
+      My Heart Is Waiting For You ➜ <span>❤️</span>
+    </button>
+  </div>
+</div>
+
+<script>
+function openLetter(){
+  document.getElementById("letterBox").style.display="block";
+  document.getElementById("bgMusic").play();
+}
+
+function contactMe(){
+  window.open(
+    "https://www.snapchat.com/add/arinda_851?share_id=HA2lJipzj-U&locale=en-US",
+    "_blank"
+  );
+}
+
+/* FLOATING HEARTS (SMALLER) */
+for(let i=0;i<26;i++){
+  let h=document.createElement("div");
+  h.className="heart-bg";
+  h.innerHTML=Math.random()>0.5 ? "❤️" : "💙";
+  h.style.left=Math.random()*100+"%";
+  h.style.fontSize=(12+Math.random()*18)+"px";
+  h.style.color=Math.random()>0.5 ? "#ff4d6d" : "#6fb7ff";
+  h.style.animationDuration=(6+Math.random()*6)+"s";
+  document.body.appendChild(h);
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>I Love You Barira</title>
+
+<style>
+@font-face{
+  font-family:'Geraldine';
+  src:url('Geraldine.ttf');
+}
+
+body{
+  margin:0;
+  min-height:100vh;
+  font-family:'Geraldine', cursive;
+  color:white;
+  text-align:center;
+  background:
+    linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.9)),
+    url("gallery-bg.jpg") center/cover no-repeat fixed;
+}
+
+/* TITLE */
+h1{
+  margin-top:25px;
+  font-size:42px;
+  animation:glow 2s infinite;
+}
+h1 span{color:#ff4d6d;}
+
+.subtitle{
+  font-size:20px;
+  margin-bottom:30px;
+}
+
+/* GALLERY */
+.gallery{
+  display:flex;
+  justify-content:center;
+  gap:30px;
+  padding:20px;
+  flex-wrap:wrap;
+}
+
+/* CARD */
+.card{
+  width:260px;
+  height:330px;
+  perspective:1200px;
+  cursor:pointer;
+}
+
+.card-inner{
+  width:100%;
+  height:100%;
+  position:relative;
+  transform-style:preserve-3d;
+  transition:transform 0.8s ease;
+}
+
+.card.flipped .card-inner{
+  transform:rotateY(180deg);
+}
+
+.face{
+  position:absolute;
+  width:100%;
+  height:100%;
+  backface-visibility:hidden;
+  border-radius:25px;
+  overflow:hidden;
+  box-shadow:0 15px 35px rgba(0,0,0,0.7);
+}
+
+.face img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+/* BACK */
+.back{
+  transform:rotateY(180deg);
+  background:linear-gradient(135deg,#000428,#004e92);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  font-size:20px;
+  color:#ffd6e0;
+}
+
+/* BUTTON */
+.buttons{
+  margin:40px 0;
+}
+
+.buttons button{
+  background:transparent;
+  border:2px solid #ff4d6d;
+  color:white;
+  padding:14px 40px;
+  font-size:20px;
+  border-radius:40px;
+  cursor:pointer;
+  animation:pulse 1.5s infinite;
+}
+
+.buttons span{
+  color:#ff4d6d;
+}
+
+@keyframes pulse{
+  0%{transform:scale(1);}
+  50%{transform:scale(1.08);}
+  100%{transform:scale(1);}
+}
+
+@keyframes glow{
+  0%{text-shadow:0 0 5px #ff4d6d;}
+  50%{text-shadow:0 0 20px #ff4d6d;}
+  100%{text-shadow:0 0 5px #ff4d6d;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- MUSIC (click ke baad chalega agar browser block kare) -->
+<audio id="bgMusic" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<h1>I Love You <span>Barira</span> </h1>
+<div class="subtitle">Meri Jaan Barira </div>
+
+<div class="gallery">
+
+  <div class="card" onclick="flip(this)">
+    <div class="card-inner">
+      <div class="face">
+        <img src="img3.jpg">
+      </div>
+      <div class="face back">
+        Barira,
+tum se mohabbat ka matlab
+tumhein apna kehna nahi,
+balkay tumhari har khushi ko
+apni dua bana lena hai۔
+      </div>
+    </div>
+  </div>
+
+  <div class="card" onclick="flip(this)">
+    <div class="card-inner">
+      <div class="face">
+        <img src="img4.jpg">
+      </div>
+      <div class="face back">
+        Barira, tum wo ehsaas ho
+jo lafzon mein poora kabhi bayan hi nahi hota,
+bas dil chahta hai
+tum hamesha meri zindagi ka hissa raho
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="buttons">
+  <button onclick="goNext()">Next ➜ <span>❤️</span></button>
+</div>
+
+<script>
+let musicStarted=false;
+
+function playMusic(){
+  if(!musicStarted){
+    document.getElementById("bgMusic").play();
+    musicStarted=true;
+  }
+}
+
+function flip(card){
+  playMusic();
+  card.classList.toggle("flipped");
+}
+
+function goNext(){
+  playMusic();
+  window.location.href="letter.html";
+}
+</script>
+
+</body>
+</html>
